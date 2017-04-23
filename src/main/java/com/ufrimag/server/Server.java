@@ -2,7 +2,6 @@ package com.ufrimag.server;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.Iterator;
 
 import com.ufrimag.server.Exception.FormatIncrementDecException;
 import com.ufrimag.server.Exception.KeyNotFoundException;
