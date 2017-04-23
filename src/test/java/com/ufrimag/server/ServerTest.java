@@ -2,14 +2,13 @@ package com.ufrimag.server;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Set;
 
 import org.junit.Test;
 
 import com.ufrimag.server.Exception.FormatIncrementDecException;
 import com.ufrimag.server.Exception.KeyNotFoundException;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import junit.framework.Assert;
 
 @SuppressWarnings("deprecation")
@@ -18,6 +17,7 @@ public class ServerTest {
 	Hashtable<String, Object> hashtable = Server.getHashtable();
 
 	@Test
+	@Ignore
 	public void testIsEmpty() {
 
 		Assert.assertTrue(hashtable.isEmpty());
@@ -310,6 +310,5 @@ public class ServerTest {
 			Assert.fail(e.getMessage());
 		}
 
-		
 	}	
 }
