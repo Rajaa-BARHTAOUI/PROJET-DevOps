@@ -19,7 +19,7 @@ public class Server {
 		if (hashtable.get(key)!=null)
 		   return hashtable.get(key);
 		else {
-			throw new KeyNotFoundException("la clé " + key + " n' a pas été trouvé dans le hashtable");
+			throw new KeyNotFoundException("la cle " + key + " n' a pas ete trouve dans le hashtable");
 		}	
 	}
 
@@ -28,6 +28,7 @@ public class Server {
 			return true;
 	}
 
+	@SuppressWarnings("unchecked")
 	public static boolean incrementer(String key) throws KeyNotFoundException, FormatIncrementDecException {
 
 		boolean result = false;
@@ -50,25 +51,26 @@ public class Server {
 							index++;
 						} else {
 							throw new FormatIncrementDecException(
-									"le type de l' élement dont la clé est" + key + "ne peux pas être incrementé ");
+									"le type de l' element dont la cle est" + key + "ne peux pas etre incremente ");
 						}
 					}
 					hashtable.put(key, resultList);
 					result = true;
 				} else {
 					throw new FormatIncrementDecException(
-							"le type de l' élement dont la clé est" + key + "ne peux pas être incrementé ");
+							"le type de l' element dont la cle est" + key + "ne peux pas etre incremente ");
 				}
 			}
 
 		} else {
-			throw new KeyNotFoundException("la clé " + key + " n' a pas été trouvé dans le hashtable");
+			throw new KeyNotFoundException("la cle " + key + " n' a pas ete trouve dans le hashtable");
 		}
 
 		return result;
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public static boolean decrementer(String key) throws KeyNotFoundException, FormatIncrementDecException {
 
 		boolean result = false;
@@ -91,25 +93,26 @@ public class Server {
 							index++;
 						} else {
 							throw new FormatIncrementDecException(
-									"le type de l' élement dont la clé est" + key + "ne peux pas être decrementé ");
+									"le type de l' element dont la cle est" + key + "ne peux pas etre decremente ");
 						}
 					}
 					hashtable.put(key, resultList);
 					result = true;
 				} else {
 					throw new FormatIncrementDecException(
-							"le type de l' élement dont la clé est" + key + "ne peux pas être decrementé ");
+							"le type de l' element dont la cle est" + key + "ne peux pas etre decremente ");
 				}
 			}
 
 		} else {
-			throw new KeyNotFoundException("la clé " + key + " n' a pas été trouvé dans le hashtable");
+			throw new KeyNotFoundException("la cle " + key + " n' a pas ete trouve dans le hashtable");
 		}
 
 		return result;
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public static boolean additionValue(String key, int value)
 			throws FormatIncrementDecException, KeyNotFoundException {
 		boolean result = false;
@@ -131,24 +134,25 @@ public class Server {
 							index++;
 						} else {
 							throw new FormatIncrementDecException(
-									"le type de l' élement dont la clé est" + key + "ne peux pas être additionné ");
+									"le type de l' element dont la cle est" + key + "ne peux pas etre additionne ");
 						}
 					}
 					hashtable.put(key, resultList);
 					result = true;
 				} else {
 					throw new FormatIncrementDecException(
-							"le type de l' élement dont la clé est" + key + "ne peux pas être additionné ");
+							"le type de l' element dont la cle est" + key + "ne peux pas etre additionne ");
 				}
 			}
 
 		} else {
-			throw new KeyNotFoundException("la clé " + key + " n' a pas été trouvé dans le hashtable");
+			throw new KeyNotFoundException("la cle " + key + " n' a pas ete trouve dans le hashtable");
 		}
 
 		return result;
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static boolean additionValueToListElement(String key, int index, int value)
 			throws FormatIncrementDecException, KeyNotFoundException {
 		boolean result = false;
@@ -163,16 +167,17 @@ public class Server {
 				}
 			} else {
 				throw new FormatIncrementDecException(
-						"le type de l' élement dont la clé est" + key + "ne peux pas être additionné ");
+						"le type de l' element dont la cle est" + key + "ne peux pas etre additionne ");
 			}
 		}
 
 		else {
-			throw new KeyNotFoundException("la clé " + key + " n' a pas été trouvé dans le hashtable");
+			throw new KeyNotFoundException("la cle " + key + " n' a pas ete trouve dans le hashtable");
 		}
 		return result;
 	}
 
+		@SuppressWarnings({ "unchecked", "rawtypes" })
 		public static boolean addElementList(String key,int value) {
 			boolean result=false;
 			boolean typeperformed=false;
@@ -194,6 +199,7 @@ public class Server {
 			return result;
 		}
 
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		public static boolean RemoveElementListIndex(String key, int index)throws FormatIncrementDecException, KeyNotFoundException {
 			boolean result = false;
 			Object element = hashtable.get(key);
@@ -206,12 +212,12 @@ public class Server {
 					}
 				} else {
 					throw new FormatIncrementDecException(
-							"le type de l' élement dont la clé est" + key + "ne peux pas être supprimé ");
+							"le type de l' element dont la cle est" + key + "ne peux pas etre supprime ");
 				}
 			}
 
 			else {
-				throw new KeyNotFoundException("la clé " + key + " n' a pas été trouvé dans le hashtable");
+				throw new KeyNotFoundException("la cle " + key + " n' a pas ete trouve dans le hashtable");
 			}
 			return result;
 		}
