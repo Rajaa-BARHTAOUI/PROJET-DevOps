@@ -36,11 +36,16 @@ public class HashtableImpTest {
 		list.add(2);
 		HashtableImp<String, ArrayList<Integer>> hash = new HashtableImp<String, ArrayList<Integer>>();
 		hash.addElement(key, list);
+		HashtableImp<String, String> hashF = new HashtableImp<String, String>();
+		hashF.addElement("key1", "test");
+		
 		try {
 
 			Assert.assertEquals(2, hash.getValue(key).size());
 			Assert.assertTrue(hash.addElementInList(key, 5));
 			Assert.assertEquals(3, hash.getValue(key).size());
+			Assert.assertFalse(hashF.addElementInList("key1","test1"));
+			
 		} catch (KeyNotFoundException e) {
 			Assert.fail("Failed test addElementInList() ");
 
@@ -76,6 +81,9 @@ public class HashtableImpTest {
 		Assert.assertEquals(-1, hash.removeElementListIndex("none", 1));
 		Assert.assertEquals(-1, hash.removeElementListIndex("list", 3));
 		Assert.assertEquals(1, hash.removeElementListIndex("list", 1));
+		HashtableImp<String,Integer> hashI = new HashtableImp<String,Integer>();
+		hashI.addElement("key1",5);
+		Assert.assertEquals(-1,hashI.removeElementListIndex("key1",5));
 	}
 
 	@Test
@@ -96,7 +104,7 @@ public class HashtableImpTest {
 			Assert.assertEquals(list.indexOf(1), hash.getValue(key).indexOf(1));
 			Assert.assertEquals(2, hash.getValue(key).size());
 			Assert.assertEquals(list.get(0), hash.getValue(key).get(0));
-
+            
 		} catch (KeyNotFoundException e) {
 			Assert.fail(" failed test getValueTest() ");
 		}
@@ -119,8 +127,7 @@ public class HashtableImpTest {
 		hash.addElement(key1, 3);
 		hash.addElement(key2, 6);
 		try {
-			// a faire de set
-
+		
 			Assert.assertEquals((Object) 7, hash.setValue(key1, 7));
 			Assert.assertEquals(hash.getValue(key1), hash.getValue(key1));
 
@@ -153,11 +160,14 @@ public class HashtableImpTest {
 		HashtableImp<Integer, ArrayList<Integer>> hash = new HashtableImp<Integer, ArrayList<Integer>>();
 		hash.addElement(key, list);
 		hash.addElement(key2, list2);
-
+		HashtableImp<String, Integer> hashI = new HashtableImp<String,Integer>();
+		hashI.addElement("key1",3);
+		
 		try {
 
 			Assert.assertEquals(1, hash.getValueListIndex(key, 0));
 			Assert.assertEquals(23, hash.getValueListIndex(key2, 1));
+			Assert.assertNull(hashI.getValueListIndex("key1",3));
 
 		} catch (KeyNotFoundException e) {
 			Assert.fail(" failed test getValueListIndex() ");
@@ -166,11 +176,21 @@ public class HashtableImpTest {
 		try {
 			hash.removeElementListIndex(key, 1);
 			hash.getValueListIndex(key, 1);
+		} catch (KeyNotFoundException e) {
+			// TODO Auto-generated catch block
+			Assert.assertTrue(true);
+		}
+		try {
+			
+			hash.removeElement(key2);
 			hash.getValueListIndex(key2, 2);
 		} catch (KeyNotFoundException e) {
 			// TODO Auto-generated catch block
 			Assert.assertTrue(true);
 		}
+		
+		
+		
 
 	}
 
@@ -189,9 +209,14 @@ public class HashtableImpTest {
 		HashtableImp<String, ArrayList<Double>> hash = new HashtableImp<String, ArrayList<Double>>();
 		hash.addElement(key1, list);
 		hash.addElement(key2, list2);
+		
+		HashtableImp<String,Double> hashD = new HashtableImp<String,Double>();
+		hashD.addElement(key1,10.3);
+		
 
 		try {
-
+			
+            Assert.assertNull(hashD.setValueListIndex(key1,0,0.43));
 			Assert.assertEquals(hash.getValue(key1), hash.setValueListIndex(key1, 0, 0.4));
 			Assert.assertEquals(hash.getValue(key2), hash.setValueListIndex(key2, 1, 1.23));
 
@@ -202,6 +227,14 @@ public class HashtableImpTest {
 		try {
 			hash.removeElementListIndex(key1, 1);
 			hash.setValueListIndex(key1, 1, 3.2);
+			
+		} catch (KeyNotFoundException e) {
+			// TODO Auto-generated catch block
+			Assert.assertTrue(true);
+		}
+		
+		try {
+			hash.removeElement(key2);
 			hash.setValueListIndex(key2, 2, 23);
 		} catch (KeyNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -386,6 +419,19 @@ public class HashtableImpTest {
 			Assert.assertTrue(true);
 
 		}
+		
+		try{
+		
+			HashtableImp<String, Integer> hash = new HashtableImp<String,Integer>();
+		    hash.addElement(key1,3);
+		    hash.addValue(key1, 0, 1);
+	    } catch (KeyNotFoundException e) {
+		// TODO Auto-generated catch block
+	    	Assert.assertTrue(true);
+	    } catch (FormatIncrementDecException e) {
+	    	Assert.fail("failed test addValue() ");
+
+	}
 
 	}
 
@@ -422,7 +468,7 @@ public class HashtableImpTest {
 		list.add(3.231);
 		list.add(4.043);
 		hash.addElement(key1, list);
-		hash.incrementer(key1, 1);
+		hash.decrementer(key1, 1);
 		Assert.assertEquals(-1, hash.getValue(key1).indexOf(4.043));
 		Assert.assertEquals(2, hash.getValue(key1).size());
 		list.set(1, 5.043);

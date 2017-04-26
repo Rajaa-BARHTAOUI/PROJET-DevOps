@@ -53,11 +53,12 @@ public class HashtableImp<K, V> implements HashtableS<K, V> {
 	public K removeElement(K key) throws RemoteException {
 		// TODO Auto-generated method stub
 		int index = this.keyList.indexOf(key);
+		
 		if (index == -1)
 			return null;
 		if (this.keyList.remove(index) != null && this.valueList.remove(index) != null)
 			return key;
-		return null;
+	    return null;
 
 	}
 
@@ -90,9 +91,8 @@ public class HashtableImp<K, V> implements HashtableS<K, V> {
 		if (id == -1)
 			throw new KeyNotFoundException("Not found key " + key);
 		V value = this.valueList.get(id);
-		if (value != null)
-			return value;
-		return null;
+		return value;
+		
 
 	}
 
@@ -102,10 +102,10 @@ public class HashtableImp<K, V> implements HashtableS<K, V> {
 		int id = this.keyList.indexOf(key);
 		if (id == -1)
 			throw new KeyNotFoundException("Not found key " + key);
-
-		if (this.valueList.set(id, value) != null)
-			return value;
-		return null;
+	    
+		if(this.valueList.set(id, value) != null);
+	        return value;
+	
 	}
 
 	@Override
@@ -187,9 +187,7 @@ public class HashtableImp<K, V> implements HashtableS<K, V> {
 			} else {
 				throw new FormatIncrementDecException(key + " Element non incrementable ");
 			}
-		} else {
-			throw new KeyNotFoundException("Key " + key + " not found");
-		}
+		} 
 
 	}
 
@@ -251,8 +249,8 @@ public class HashtableImp<K, V> implements HashtableS<K, V> {
 		}
 
 	}
-
-	@SuppressWarnings("unchecked")
+	
+	@Override
 	public void incrementer(K key, int index)
 			throws RemoteException, KeyNotFoundException, FormatIncrementDecException {
 
